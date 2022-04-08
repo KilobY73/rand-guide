@@ -1,4 +1,4 @@
-# C/C++可变长参数列表入门
+# C/C++变长参数列表入门
 *没错，就是scanf、printf同款那个*
 
 ---
@@ -13,19 +13,19 @@ C++
 
 ## 2.基础用法
 ```
-//用到可变参数列表的函数至少要有一个参数
+//用到变长参数列表的函数至少要有一个参数
 //在最后一个确定参数后原本写参数名的位置写省略号`...`
 
-va_list vl;  //初始化一个可变长参数列表handler（似乎本质就是个指针）
+va_list vl;  //初始化一个变长参数列表handler（似乎本质就是个指针）
              //va for variable argument
 
 void va_start(va_list ap, paramN);
       //paramN填入参数名
-      //初始化一个可变长参数列表，ap将指向paramN后第一个地址
+      //初始化一个变长参数列表，ap将指向paramN后第一个地址
 
 type va_arg(va_list ap, type);
       //type填入数据类型
-      //这是个宏函数，类型由
+      //这是个宏函数，类型根据所填内容宏展开而更改
       //将ap地址后type类型大小的内容以type类型返回
 
 void va_end(va_list ap);
@@ -39,7 +39,7 @@ void va_end(va_list ap);
 #include <stdio.h>
 #include <stdarg.h>
 
-void func(int para1, ...){  //可变长部分写...
+void func(int para1, ...){  //变长部分写...
   va_list vl;              //声明列表handler
 
   int tmp;
