@@ -1,5 +1,5 @@
 [
   {"name": "Markdown", "path": "Markdown.md"},
   {"name": "C多线程", "path": "c_pthread.md"},
-  {"name": "Linux移动分区", "path": "MovePartition.md"},
+  {"name": "Linux移动分区", "path": "MovePartition.md"}
 ]
