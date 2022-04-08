@@ -63,9 +63,9 @@ pthread_mutex_t mutex=PTHREAD_MUTEX_INITIALIZER; //初始化互斥锁
 void * func(void * arg){
   printf("Thread %d print\n",*(int*)arg);
 
-  pthread_mutex_lock(&mutex);      //锁定互斥锁
+  pthread_mutex_lock(&mutex);  //锁定互斥锁，其他未拿到锁线程执行到此句将被阻塞
 
-  if(pubNum>0){                    //模拟库存减少操作，pubNum不能小于0
+  if(pubNum>0){                //模拟库存减少操作，pubNum不能小于0
     printf("Thread %d, Public Num -1\n",*(int*)arg);
        //做一些无意义的事，让判断和自减存在时间差，方便后续对比
     for(int i=0;i<100;i++){}
