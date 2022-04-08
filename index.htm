@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<title>MDNote</title>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/showdown@2.0.3/dist/showdown.min.js"></script>-->
+<script src="showdown.min.js"></script>
+<script>
+  var converter=new showdown.Converter();
+
+//ajax
+  function getList(){
+    var xhr;
+    //fk IE6 IE5
+    xhr=new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+      if(xhr.readyState==4&&xhr.status==200){
+        list=JSON.parse(xhr.responseText);
+        for(var i=0;i<list.length;i++){
+          document.getElementById("menu").innerHTML+='<li><a onclick="loadContent('+"'"+list[i].path+"'"+')">'+list[i].name+'</a></li>';
+        }
+      }
+    }
+    xhr.open("GET","/list.json",true);
+    xhr.send();
+  }
+
+  function loadContent(path){
+    var xhr;
+    //fk IE6 IE5
+    xhr=new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+      if(xhr.readyState==4&&xhr.status==200){
+        document.getElementById("paragraph").innerHTML=converter.makeHtml(xhr.responseText);
+      }
+    }
+    xhr.open("GET","/md/"+path,true);
+    xhr.send();
+  }
+</script>
+
+<style>
+  #title{
+    font-size:4rem;
+    margin:0;
+    padding:0;
+  }
+  #subtitle{
+    margin-top:0;
+    margin-left:1rem;
+  }
+  nav{
+    float:left;
+    width:20%;
+  }
+  article{
+    float:left;
+    width:70%;
+    margin-left:5%;
+    height:auto;
+  }
+  footer{
+    text-align:center;
+    clear:both;
+  }
+  #menu{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    background-color:#eee;
+  }
+  li a{
+    display:block;
+    color:#000;
+    height:2.45rem;
+    padding:0.5rem 1rem;
+    font-size:1.8rem;
+    text-decoration: none;
+    text-align:center;
+    vertical-align:center;
+  }
+  #contentTitle{
+    text-align:center;
+  }
+  li a:hover{
+    background-color:#fff
+  }
+
+  @media only screen and (max-width: 768px) {
+  #title{
+    text-align:center;
+    font-size:4rem;
+  }
+  #subtitle{
+    display:none;
+  }
+  nav{
+    float:none;
+    width:100%;
+  }
+  article{
+    float:none;
+    width:100%;
+    margin-left:0;
+    font-size:1.25rem;
+  }
+  #paragraph{
+    width:80%;
+    margin:auto;
+  }
+  #contentTitle{
+    font-size:2rem;
+    margin:0.5rem;
+  }
+  } 
+</style>
+</head>
+<body onload="getList()">
+<header>
+  <h1 id="title">MDNote</h1>
+  <h2 id="subtitle">A Markdown Notebook</h2>
+  <hr/>  
+</header>
+
+<nav>
+  <ul id="menu">
+  </ul>
+  <hr/>
+</nav>
+
+<article>
+  <h3 id="contentTitle"></h3>
+  <hr/>
+  <p id="paragraph"></p>
+  <br/>
+  <br/>
+</article>
+
+<footer>
+  <hr/>
+  <p>Copyright &copy; All Rights Reserved.</p>
+</footer>
+</body>
+</html>
