@@ -23,7 +23,7 @@
         }
       }
     }
-    xhr.open("GET","/list.json",true);
+    xhr.open("GET","/rand-guide/list.json",true);
     xhr.send();
   }
 
@@ -36,7 +36,7 @@
         document.getElementById("paragraph").innerHTML=converter.makeHtml(xhr.responseText);
       }
     }
-    xhr.open("GET","/md/"+path,true);
+    xhr.open("GET","/rand-guide/md/"+path,true);
     xhr.send();
   }
 </script>
