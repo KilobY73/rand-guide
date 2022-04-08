@@ -99,7 +99,7 @@ int main(){
   printf("Public Number:%d\n",pubNum); //检验pubNum
 }
 ```
-输出，可见各进程并非按顺序执行  
+输出，可见各线程并非按顺序执行  
 ```
 Thread 1 print
 Thread 1, Public Num -1
@@ -131,4 +131,4 @@ Thread 3 join
 Thread 4 join
 Public Number:-1
 ```
-有进程在其他进程无意义操作阶段也进入了自减分支，导致判断失效，出现非法情况  
+有线程在其他进程无意义操作阶段也进入了自减分支，导致判断失效，出现非法情况  
