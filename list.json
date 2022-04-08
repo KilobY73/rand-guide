@@ -1,3 +1,4 @@
 [
-  {"name": "Markdown", "path": "Markdown.md"}
+  {"name": "Markdown", "path": "Markdown.md"},
+  {"name": "C多线程", "path": "c_pthread.md"}
 ]
